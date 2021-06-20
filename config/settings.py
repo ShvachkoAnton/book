@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from environs import Env
 from pathlib import Path
+import socket
 
 env = Env() # new
 env.read_env()
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'accounts',
+    'debug_toolbar',
 
     'pages',
     'crispy_forms',
@@ -61,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -187,4 +190,10 @@ ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_UNIQUE_EMAIL=True
 MEDIA_URL = '/media/' # new
 MEDIA_ROOT = str(BASE_DIR.joinpath('media')) # new
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+
+
+
+
 

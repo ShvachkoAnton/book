@@ -21,3 +21,9 @@
 </div>
 </div>
 {% endblock content %}
+
+
+{%  if book.cover   %}
+<img   class="bookcover"   src="{{book.cover.url}}" alt="{{book.title}}"     >
+
+{% endif   %}

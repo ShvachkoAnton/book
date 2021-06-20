@@ -26,3 +26,6 @@ class SearchResult(ListView):
         Q(title__icontains=query)|Q(author__icontains=query)
 
         )
+
+
+
